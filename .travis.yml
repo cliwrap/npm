@@ -1,0 +1,16 @@
+services:
+- docker
+script:
+- docker build -t wtanaka/alpine-37-uid-npm .
+# Make sure the container works normally
+- "docker run --rm wtanaka/alpine-37-uid-npm npm -l | grep '^Usage: npm'"
+after_success:
+- >
+  curl -H "Content-Type: application/json"
+  --data '{"source_type": "Branch", "source_name": "master"}'
+  -X POST
+  https://registry.hub.docker.com/u/wtanaka/alpine-37-uid-npm/trigger/3da54465-8510-4c6a-a7a6-59174ef68f4b/
+notifications:
+  email:
+    recipients:
+      secure: vrMLiqiwV6EQZkrvcQR93ESm4MuG7pig8u052BajK0/MfXpE5rKqMX54L3si1wYaGVQQZE68n9CjZBJwadm6wWNismjNlAXfLnYCCd8fY8tF4mFeeKvxsjerHPmb3FgIg8HBO3tEb/xC8dPYcotQ8HZwuMW2d5bfpM1S9L9Ncz5YcT7rvB6pQz8wbsQqwEehzoaogCRYrxDNCZx8Wn/t6MmJVjU7d2FCgc9SeLotuq0oyWnYfQnMtBCVrgwSW9TYFllYPDql3fE1sU1gsHp4+I2Lmdxt1Eq7ENFnxm5ypernODUlcQ9HM8/K2C5jIOwpwfwWKpl9TBafhEayaonjPDjT6uhRdp6CcdppZSLDplFdoJDDg3BvPB5gnN75sfgQDlP9+5d5EZ+WeILlV+KLOrSnq4DO4PM50kSrLBoA9pFcvOiyT5Dm8uYsihxoodZQJyLoDaGBVOWc1L6chABDcfzEyGqBuu2yysBhHElO0M3k09mLB9gqMMy2YENVZmEss2+RsKjqWmBDFgmfozEJ1PkWK9lNxEsXguyyX3dRr2zm+7cB0BDkqGY0KUVgxFobD1RXG5JeTl5Y7qnHHL513T/jUng7We6DIjjASLcAjv6ePL8HpSKG7aPAH+hVeg+QYY3EVaLBwBRlKhKSyqwzp56t3oUR9PGvsdODRen1Gns=
