@@ -1,15 +1,15 @@
 services:
 - docker
 script:
-- docker build -t wtanaka/alpine-37-uid-npm .
+- docker build -t cliwrap/npm .
 # Make sure the container works normally
-- "docker run --rm wtanaka/alpine-37-uid-npm npm -l | grep '^Usage: npm'"
+- "docker run --rm cliwrap/npm npm -l | grep '^Usage: npm'"
 after_success:
 - >
   curl -H "Content-Type: application/json"
   --data '{"source_type": "Branch", "source_name": "master"}'
   -X POST
-  https://registry.hub.docker.com/u/wtanaka/alpine-37-uid-npm/trigger/3da54465-8510-4c6a-a7a6-59174ef68f4b/
+  https://hub.docker.com/api/build/v1/source/2ddb2137-4add-4be8-a1e4-8c98a9333933/trigger/ce8631e1-5ae3-4c2e-b4b2-f908fa1879ef/call/
 notifications:
   email:
     recipients:
