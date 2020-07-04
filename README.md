@@ -1,5 +1,5 @@
 [![Build
-Status](https://travis-ci.org/wtanaka/docker-alpine-37-uid-npm.svg?branch=master)](https://travis-ci.org/wtanaka/docker-alpine-37-uid-npm)
+Status](https://travis-ci.com/cliwrap/npm.svg?branch=master)](https://travis-ci.com/cliwrap/npm)
 
 The `Dockerfile` in this repository builds an `alpine:3.7` container
 which lets you run commands inside the container using a UID and GID
